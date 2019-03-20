@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -61,14 +63,18 @@ public class AddTravelPlan extends AppCompatActivity {
                             edtPrice.getText().toString().trim(),
                             imageViewToByte(imageView)
                     );
+
                     Toast.makeText(getApplicationContext(), "Added successfully!", Toast.LENGTH_SHORT).show();
+                    Intent back_main = new Intent(AddTravelPlan.this, MainActivity.class);
+                    startActivity(back_main);
                     edtName.setText("");
                     edtPrice.setText("");
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.drawable.ic_action_image);
                 }
                 catch (Exception e){
                     e.printStackTrace();
                 }
+
             }
         });
 
@@ -84,7 +90,7 @@ public class AddTravelPlan extends AppCompatActivity {
     public static byte[] imageViewToByte(ImageView image) {
         Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }
