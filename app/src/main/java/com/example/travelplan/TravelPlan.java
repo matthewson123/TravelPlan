@@ -2,13 +2,17 @@ package com.example.travelplan;
 
 public class TravelPlan {
     private int id;
-    private String name;
-    private String price;
+    private String place;
+    private String day;
+    private String time;
+    private String address;
     private byte[] image;
 
-    public TravelPlan(String name, String price, byte[] image, int id) {
-        this.name = name;
-        this.price = price;
+    public TravelPlan(String place, String day, String time, String address, byte[] image, int id) {
+        this.place = place;
+        this.day = day;
+        this.time = time;
+        this.address = address;
         this.image = image;
         this.id = id;
     }
@@ -21,20 +25,36 @@ public class TravelPlan {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPlace() {
+        return place;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
-    public String getPrice() {
-        return price;
+    public String getDay() {
+        return day;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public byte[] getImage() {

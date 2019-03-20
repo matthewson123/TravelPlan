@@ -40,7 +40,7 @@ public class TravelListAdapter extends BaseAdapter {
 
     private class ViewHolder{
         ImageView imageView;
-        TextView txtName, txtPrice;
+        TextView txtPlace, txtDay,txtTime, txtAddress;
     }
 
     @Override
@@ -53,9 +53,11 @@ public class TravelListAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
-            holder.txtName = (TextView) row.findViewById(R.id.txtName);
-            holder.txtPrice = (TextView) row.findViewById(R.id.txtPrice);
-            holder.imageView = (ImageView) row.findViewById(R.id.imgFood);
+            holder.txtPlace = (TextView) row.findViewById(R.id.txtPlace);
+            holder.txtDay = (TextView) row.findViewById(R.id.txtDay);
+            holder.txtTime = (TextView) row.findViewById(R.id.txtTime);
+            holder.txtAddress = (TextView) row.findViewById(R.id.txtAddress);
+            holder.imageView = (ImageView) row.findViewById(R.id.imgTravel);
             row.setTag(holder);
         }
         else {
@@ -64,11 +66,13 @@ public class TravelListAdapter extends BaseAdapter {
 
         TravelPlan travelPlan = travelPlansList.get(position);
 
-        holder.txtName.setText(travelPlan.getName());
-        holder.txtPrice.setText(travelPlan.getPrice());
+        holder.txtPlace.setText(travelPlan.getPlace());
+        holder.txtDay.setText(travelPlan.getDay());
+        holder.txtTime.setText(travelPlan.getTime());
+        holder.txtAddress.setText(travelPlan.getAddress());
 
-        byte[] travelPlanImageImage = travelPlan.getImage();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(travelPlanImageImage, 0, travelPlanImageImage.length);
+        byte[] travelPlanImage = travelPlan.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(travelPlanImage, 0, travelPlanImage.length);
         holder.imageView.setImageBitmap(bitmap);
 
         return row;

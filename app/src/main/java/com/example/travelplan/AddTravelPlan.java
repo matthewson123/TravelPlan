@@ -24,8 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class AddTravelPlan extends AppCompatActivity {
-    EditText edtName, edtPrice;
-    Button btnChoose, btnAdd, btnList;
+    EditText edtPlace, edtDay, edtTime, edtAddress;
+    Button btnChoose, btnAdd;
     ImageView imageView;
 
     final int REQUEST_CODE_GALLERY = 999;
@@ -41,7 +41,7 @@ public class AddTravelPlan extends AppCompatActivity {
 
         sqLiteHelper = new SQLiteHelper(this, "TravelPlanDB.sqlite", null, 1);
 
-        sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS TRAVEL(Id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, price VARCHAR, image BLOB)");
+        sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS TRAVEL(Id INTEGER PRIMARY KEY AUTOINCREMENT, place VARCHAR, day VARCHAR, time VARCHAR , address VARCHAR, image BLOB)");
 
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,16 +59,20 @@ public class AddTravelPlan extends AppCompatActivity {
             public void onClick(View view) {
                 try{
                     sqLiteHelper.insertData(
-                            edtName.getText().toString().trim(),
-                            edtPrice.getText().toString().trim(),
+                            edtPlace.getText().toString().trim(),
+                            edtDay.getText().toString().trim(),
+                            edtTime.getText().toString().trim(),
+                            edtAddress.getText().toString().trim(),
                             imageViewToByte(imageView)
                     );
 
                     Toast.makeText(getApplicationContext(), "Added successfully!", Toast.LENGTH_SHORT).show();
                     Intent back_main = new Intent(AddTravelPlan.this, MainActivity.class);
                     startActivity(back_main);
-                    edtName.setText("");
-                    edtPrice.setText("");
+                    edtPlace.setText("");
+                    edtDay.setText("");
+                    edtTime.setText("");
+                    edtAddress.setText("");
                     imageView.setImageResource(R.drawable.ic_action_image);
                 }
                 catch (Exception e){
@@ -78,13 +82,6 @@ public class AddTravelPlan extends AppCompatActivity {
             }
         });
 
-        btnList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AddTravelPlan.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public static byte[] imageViewToByte(ImageView image) {
@@ -134,11 +131,12 @@ public class AddTravelPlan extends AppCompatActivity {
     }
 
     private void init(){
-        edtName = (EditText) findViewById(R.id.edtName);
-        edtPrice = (EditText) findViewById(R.id.edtPrice);
+        edtPlace = (EditText) findViewById(R.id.edtTravelPlaceName);
+        edtDay = (EditText) findViewById(R.id.edtDay);
+        edtTime = (EditText) findViewById(R.id.edtTime);
+        edtAddress = (EditText) findViewById(R.id.edtPlaceAddress);
         btnChoose = (Button) findViewById(R.id.btnChoose);
         btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnList = (Button) findViewById(R.id.btnList);
         imageView = (ImageView) findViewById(R.id.imageView);
     }
 

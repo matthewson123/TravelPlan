@@ -18,30 +18,34 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL(sql);
     }
 
-    public void insertData(String name, String price, byte[] image){
+    public void insertData(String place, String day, String time, String address, byte[] image){
         SQLiteDatabase database = getWritableDatabase();
-        String sql = "INSERT INTO TRAVEL VALUES (NULL, ?, ?, ?)";
+        String sql = "INSERT INTO TRAVEL VALUES (NULL, ?, ?, ?, ?, ?)";
 
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
 
-        statement.bindString(1, name);
-        statement.bindString(2, price);
-        statement.bindBlob(3, image);
+        statement.bindString(1, place);
+        statement.bindString(2, day);
+        statement.bindString(3, time);
+        statement.bindString(4, address);
+        statement.bindBlob(5, image);
 
         statement.executeInsert();
     }
 
-    public void updateData(String name, String price, byte[] image, int id) {
-        //SQLiteDatabase database = getWritableDatabase();
-        SQLiteDatabase database = getReadableDatabase();
-        String sql = "UPDATE TRAVEL SET name = ?, price = ?, image = ? WHERE id = ?";
+    public void updateData(String place, String day, String time, String address, byte[] image, int id) {
+        SQLiteDatabase database = getWritableDatabase();
+        //SQLiteDatabase database = getReadableDatabase();
+        String sql = "UPDATE TRAVEL SET place = ?, day = ?, time = ?, address = ?,image = ? WHERE id = ?";
         SQLiteStatement statement = database.compileStatement(sql);
 
-        statement.bindString(1, name);
-        statement.bindString(2, price);
-        statement.bindBlob(3, image);
-        statement.bindDouble(4, (double)id);
+        statement.bindString(1, place);
+        statement.bindString(2, day);
+        statement.bindString(3, time);
+        statement.bindString(4, address);
+        statement.bindBlob(5, image);
+        statement.bindDouble(6, (double)id);
 
         statement.execute();
         database.close();

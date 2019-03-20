@@ -74,11 +74,13 @@ public class MainActivity extends AppCompatActivity {
         list.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String price = cursor.getString(2);
-            byte[] image = cursor.getBlob(3);
+            String place = cursor.getString(1);
+            String day = cursor.getString(2);
+            String time = cursor.getString(3);
+            String address = cursor.getString(4);
+            byte[] image = cursor.getBlob(5);
 
-            list.add(new TravelPlan(name, price, image, id));
+            list.add(new TravelPlan(place, day, time, address, image, id));
         }
         adapter.notifyDataSetChanged();
 
@@ -129,8 +131,10 @@ public class MainActivity extends AppCompatActivity {
         dialog.setTitle("Update");
 
         travelImage = (ImageView) dialog.findViewById(R.id.imageViewTravel);
-        final EditText edtName = (EditText) dialog.findViewById(R.id.edtName);
-        final EditText edtPrice = (EditText) dialog.findViewById(R.id.edtPrice);
+        final EditText edtPlace = (EditText) dialog.findViewById(R.id.edtTravelPlaceName);
+        final EditText edtDay = (EditText) dialog.findViewById(R.id.edtDay);
+        final EditText edtTime = (EditText) dialog.findViewById(R.id.edtTime);
+        final EditText edtAddress = (EditText) dialog.findViewById(R.id.edtPlaceAddress);
         Button btnUpdate = (Button) dialog.findViewById(R.id.btnUpdate);
 
         // get  data of row clicked from sqlite
@@ -138,14 +142,18 @@ public class MainActivity extends AppCompatActivity {
         list.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            edtName.setText(name);
-            String price = cursor.getString(2);
-            edtPrice.setText(price);
-            byte[] image = cursor.getBlob(3);
+            String place = cursor.getString(1);
+            edtPlace.setText(place);
+            String day = cursor.getString(2);
+            edtDay.setText(day);
+            String time = cursor.getString(3);
+            edtTime.setText(time);
+            String address = cursor.getString(4);
+            edtAddress.setText(address);
+            byte[] image = cursor.getBlob(5);
             travelImage.setImageBitmap(BitmapFactory.decodeByteArray(image,0,image.length));
 
-            list.add(new TravelPlan(name, price, image, id));
+            list.add(new TravelPlan(place, day, time, address, image, id));
         }
 
         // set width for dialog
@@ -172,8 +180,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     AddTravelPlan.sqLiteHelper.updateData(
-                            edtName.getText().toString().trim(),
-                            edtPrice.getText().toString().trim(),
+                            edtPlace.getText().toString().trim(),
+                            edtDay.getText().toString().trim(),
+                            edtTime.getText().toString().trim(),
+                            edtAddress.getText().toString().trim(),
                             AddTravelPlan.imageViewToByte(travelImage),
                             position
                     );
@@ -221,11 +231,13 @@ public class MainActivity extends AppCompatActivity {
         list.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String price = cursor.getString(2);
-            byte[] image = cursor.getBlob(3);
+            String place = cursor.getString(1);
+            String day = cursor.getString(2);
+            String time = cursor.getString(3);
+            String address = cursor.getString(4);
+            byte[] image = cursor.getBlob(5);
 
-            list.add(new TravelPlan(name, price, image, id));
+            list.add(new TravelPlan(place, day, time, address, image, id));
         }
         adapter.notifyDataSetChanged();
     }
