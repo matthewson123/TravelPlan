@@ -11,7 +11,8 @@ android:layout_height="match_parent">
     android:id="@+id/imgTravel"
     android:layout_alignParentTop="true"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
+    android:layout_alignParentStart="true"
+    />
 
     <TextView
         android:id="@+id/txtPlace"
@@ -20,26 +21,27 @@ android:layout_height="match_parent">
         android:layout_below="@+id/imgTravel"
         android:layout_alignEnd="@+id/imgTravel"
         android:layout_alignRight="@+id/imgTravel"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:gravity="center"
         android:text="@string/travel_place"
         android:textAlignment="center"
         android:textColor="#0e11d1"
-        android:textSize="17sp" />
+        android:textSize="20sp"
+         />
 
     <TextView
         android:id="@+id/txtDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="66dp"
+        android:layout_height="41dp"
         android:layout_below="@+id/txtPlace"
         android:layout_alignEnd="@+id/txtPlace"
         android:layout_alignRight="@+id/txtPlace"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:gravity="left"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="65dp"
+        android:gravity="center"
         android:text="@string/travel_day"
         android:textAlignment="center"
         android:textColor="#ce1309"
@@ -47,16 +49,15 @@ android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/txtTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="43dp"
         android:layout_below="@+id/txtPlace"
         android:layout_alignEnd="@+id/txtPlace"
         android:layout_alignRight="@+id/txtPlace"
-        android:layout_marginLeft="-26dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="-11dp"
-        android:layout_marginRight="-11dp"
-        android:gravity="right"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginRight="-10dp"
+        android:gravity="center"
         android:text="@string/travel_time"
         android:textAlignment="center"
         android:textColor="#ce1309"
@@ -64,18 +65,18 @@ android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/txtAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="116dp"
         android:layout_below="@+id/txtDay"
         android:layout_alignEnd="@+id/txtDay"
         android:layout_alignRight="@+id/txtDay"
         android:layout_marginLeft="-26dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="-63dp"
-        android:layout_marginRight="-63dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="-76dp"
+        android:layout_marginRight="-76dp"
         android:gravity="center"
         android:text="@string/travel_address"
         android:textAlignment="center"
         android:textColor="#009688"
-        android:textSize="17sp" />
+        android:textSize="15sp" />
 </RelativeLayout>

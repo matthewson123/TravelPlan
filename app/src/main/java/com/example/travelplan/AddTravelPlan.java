@@ -8,10 +8,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +41,7 @@ public class AddTravelPlan extends AppCompatActivity {
         setContentView(R.layout.add_travel_plan_activity);
 
         init();
+
 
         sqLiteHelper = new SQLiteHelper(this, "TravelPlanDB.sqlite", null, 1);
 
@@ -138,6 +142,23 @@ public class AddTravelPlan extends AppCompatActivity {
         btnChoose = (Button) findViewById(R.id.btnChoose);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         imageView = (ImageView) findViewById(R.id.imageView);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.back_home) {
+            Intent add_mem = new Intent(this, MainActivity.class);
+            startActivity(add_mem);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

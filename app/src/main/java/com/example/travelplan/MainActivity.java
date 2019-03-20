@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     GridView gridView;
     ArrayList<TravelPlan> list;
     TravelListAdapter adapter = null;
+    public static SQLiteHelper sqLiteHelper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sqLiteHelper = new SQLiteHelper(this, "TravelPlanDB.sqlite", null, 1);
+        sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS TRAVEL(Id INTEGER PRIMARY KEY AUTOINCREMENT, place VARCHAR, day VARCHAR, time VARCHAR , address VARCHAR, image BLOB)");
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(adapter);
 
         // get all data from sqlite
-        Cursor cursor = AddTravelPlan.sqLiteHelper.getData("SELECT * FROM TRAVEL");
+        Cursor cursor = sqLiteHelper.getData("SELECT * FROM TRAVEL");
         list.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
@@ -97,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int item) {
                         if (item == 0) {
                             // update
-                            Cursor c = AddTravelPlan.sqLiteHelper.getData("SELECT id FROM TRAVEL");
+                            Cursor c = sqLiteHelper.getData("SELECT id FROM TRAVEL");
                             ArrayList<Integer> arrID = new ArrayList<Integer>();
                             while (c.moveToNext()){
                                 arrID.add(c.getInt(0));
@@ -107,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
                             // delete
-                            Cursor c = AddTravelPlan.sqLiteHelper.getData("SELECT id FROM TRAVEL");
+                            Cursor c = sqLiteHelper.getData("SELECT id FROM TRAVEL");
                             ArrayList<Integer> arrID = new ArrayList<Integer>();
                             while (c.moveToNext()){
                                 arrID.add(c.getInt(0));
@@ -138,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnUpdate = (Button) dialog.findViewById(R.id.btnUpdate);
 
         // get  data of row clicked from sqlite
-        Cursor cursor = AddTravelPlan.sqLiteHelper.getData("SELECT * FROM TRAVEL WHERE id=" + position);
+        Cursor cursor = sqLiteHelper.getData("SELECT * FROM TRAVEL WHERE id=" + position);
         list.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
@@ -179,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    AddTravelPlan.sqLiteHelper.updateData(
+                    sqLiteHelper.updateData(
                             edtPlace.getText().toString().trim(),
                             edtDay.getText().toString().trim(),
                             edtTime.getText().toString().trim(),
@@ -207,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
-                    AddTravelPlan.sqLiteHelper.deleteData(idTravel);
+                    sqLiteHelper.deleteData(idTravel);
                     Toast.makeText(getApplicationContext(), "Delete successfully!!!",Toast.LENGTH_SHORT).show();
                 } catch (Exception e){
                     Log.e("error", e.getMessage());
@@ -227,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTravelList(){
         // get all data from sqlite
-        Cursor cursor = AddTravelPlan.sqLiteHelper.getData("SELECT * FROM TRAVEL");
+        Cursor cursor = sqLiteHelper.getData("SELECT * FROM TRAVEL");
         list.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
