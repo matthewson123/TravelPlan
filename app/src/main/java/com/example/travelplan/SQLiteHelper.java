@@ -13,6 +13,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
+
     public void queryData(String sql){
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sql);

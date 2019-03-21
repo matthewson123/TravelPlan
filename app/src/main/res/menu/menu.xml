@@ -3,11 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.sqlitesample.MainActivity" >
 
+
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_action_map"
+        android:orderInCategory="100"
+        android:title="@string/title_map"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/language"
+        android:icon="@drawable/ic_action_language"
+        android:orderInCategory="100"
+        android:title="@string/title_language"
+        app:showAsAction="always"/>
+
     <item
         android:id="@+id/add_record"
         android:icon="@android:drawable/ic_menu_add"
         android:orderInCategory="100"
         android:title="@string/add_record"
         app:showAsAction="always"/>
+
 
 </menu>

@@ -12,21 +12,27 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -34,27 +40,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+
     GridView gridView;
     ArrayList<TravelPlan> list;
     TravelListAdapter adapter = null;
     public static SQLiteHelper sqLiteHelper;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_travelPlan:
-                    return true;
-                case R.id.navigation_map:
-                    return true;
-                case R.id.navigation_language:
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         sqLiteHelper = new SQLiteHelper(this, "TravelPlanDB.sqlite", null, 1);
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS TRAVEL(Id INTEGER PRIMARY KEY AUTOINCREMENT, place VARCHAR, day VARCHAR, time VARCHAR , address VARCHAR, image BLOB)");
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         gridView = (GridView) findViewById(R.id.gridView);
         list = new ArrayList<>();
@@ -292,10 +282,14 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
         if (id == R.id.add_record) {
-
-            Intent add_mem = new Intent(this, AddTravelPlan.class);
-            startActivity(add_mem);
-
+            Intent add_item = new Intent(this, AddTravelPlan.class);
+            startActivity(add_item);
+        }else if (id == R.id.map){
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(intent);
+        }else{
+            Intent language = new Intent(this, AddTravelPlan.class);
+            startActivity(language);
         }
         return super.onOptionsItemSelected(item);
     }
