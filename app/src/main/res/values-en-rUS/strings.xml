@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TravelPlan</string>
+    <string name="title_travelPlan">Travel Plan</string>
+    <string name="title_map">Map</string>
+    <string name="title_language">Language</string>
+    <string name="title_home">Home</string>
+    <string name="add_record">Add Record</string>
+    <string name="travel_place">Place Name</string>
+    <string name="travel_day">Day Of Travel</string>
+    <string name="travel_time">Time</string>
+    <string name="travel_address">Address Of Place</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="add">Add</string>
+    <string name="update">Update</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="search_maps">Enter Address, City or Zip Code</string>
+    <string name="click">Click</string>
+    <string name="zh">Chinese</string>
+    <string name="en">English</string>
+</resources>

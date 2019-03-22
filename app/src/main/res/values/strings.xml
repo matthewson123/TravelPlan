@@ -1,16 +1,20 @@
 <resources>
     <string name="app_name">TravelPlan</string>
-    <string name="title_travelPlan">Travel Plan</string>
-    <string name="title_map">Map</string>
-    <string name="title_language">Language</string>
-    <string name="title_home">Home</string>
-    <string name="add_record">Add Record</string>
-    <string name="travel_place">Place Name</string>
-    <string name="travel_day">Day Of Travel</string>
-    <string name="travel_time">Time</string>
-    <string name="travel_address">Address Of Place</string>
-    <string name="choose_image">Choose Image</string>
-    <string name="add">Add</string>
-    <string name="update">Update</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_travelPlan">旅程計劃</string>
+    <string name="title_map">地圖</string>
+    <string name="title_language">語言</string>
+    <string name="title_home">主頁</string>
+    <string name="add_record">新增新記錄</string>
+    <string name="travel_place">地方名字</string>
+    <string name="travel_day">旅行日子</string>
+    <string name="travel_time">行程時間</string>
+    <string name="travel_address">地址</string>
+    <string name="choose_image">選擇相片</string>
+    <string name="add">新增</string>
+    <string name="update">更新</string>
+    <string name="title_activity_maps">地圖</string>
+    <string name="search_maps">輸入地址,城市或郵政編碼</string>
+    <string name="click">確定</string>
+    <string name="zh">中文</string>
+    <string name="en">英文</string>
 </resources>

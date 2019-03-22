@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -37,6 +40,8 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Constants.activityList.add(this);
+        switchLanguage(Constants.langae);
 
         sqLiteHelper = new SQLiteHelper(this, "TravelPlanDB.sqlite", null, 1);
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS TRAVEL(Id INTEGER PRIMARY KEY AUTOINCREMENT, place VARCHAR, day VARCHAR, time VARCHAR , address VARCHAR, image BLOB)");
@@ -285,13 +293,39 @@ public class MainActivity extends AppCompatActivity {
             Intent add_item = new Intent(this, AddTravelPlan.class);
             startActivity(add_item);
         }else if (id == R.id.map){
-            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-            startActivity(intent);
+            Intent map = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(map);
         }else{
-            Intent language = new Intent(this, AddTravelPlan.class);
+            Intent language = new Intent(this, ChangeLanguage.class);
             startActivity(language);
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public static class Constants {
+        //system default lanhuage to english
+        public static String langae = "en";
+        public static List<Activity> activityList = new ArrayList<>();
+    }
+
+    //main code of change language
+    protected void switchLanguage(String language) {
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        switch (language) {
+            case "en":
+                config.locale = Locale.ENGLISH;
+                resources.updateConfiguration(config, dm);
+                break;
+            case "zh":
+                config.locale = Locale.CHINESE;
+                resources.updateConfiguration(config, dm);
+                break;
+            default:
+                config.locale = Locale.US;
+                resources.updateConfiguration(config, dm);
+                break;
+        }
+    }
 }
