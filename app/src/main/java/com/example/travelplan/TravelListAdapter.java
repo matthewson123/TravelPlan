@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class TravelListAdapter extends BaseAdapter {
     private Context context;
-    private  int layout;
+    private int layout;
     private ArrayList<TravelPlan> travelPlansList;
 
     public TravelListAdapter(Context context, int layout, ArrayList<TravelPlan> travelPlansList) {
@@ -38,9 +38,9 @@ public class TravelListAdapter extends BaseAdapter {
         return position;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView imageView;
-        TextView txtPlace, txtDay,txtTime, txtAddress;
+        TextView txtPlace, txtDay, txtTime, txtAddress;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class TravelListAdapter extends BaseAdapter {
         View row = view;
         ViewHolder holder = new ViewHolder();
 
-        if(row == null){
+        if (row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
@@ -59,8 +59,7 @@ public class TravelListAdapter extends BaseAdapter {
             holder.txtAddress = (TextView) row.findViewById(R.id.txtAddress);
             holder.imageView = (ImageView) row.findViewById(R.id.imgTravel);
             row.setTag(holder);
-        }
-        else {
+        } else {
             holder = (ViewHolder) row.getTag();
         }
 

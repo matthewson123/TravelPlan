@@ -17,4 +17,6 @@
     <string name="click">確定</string>
     <string name="zh">中文</string>
     <string name="en">英文</string>
+    <string name="choose_an_action">選擇</string>
+    <string name="delete">刪除</string>
 </resources>

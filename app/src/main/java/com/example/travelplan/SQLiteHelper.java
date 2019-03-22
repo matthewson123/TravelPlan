@@ -14,12 +14,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
 
-    public void queryData(String sql){
+    public void queryData(String sql) {
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sql);
     }
 
-    public void insertData(String place, String day, String time, String address, byte[] image){
+    public void insertData(String place, String day, String time, String address, byte[] image) {
         SQLiteDatabase database = getWritableDatabase();
         String sql = "INSERT INTO TRAVEL VALUES (NULL, ?, ?, ?, ?, ?)";
 
@@ -46,7 +46,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         statement.bindString(3, time);
         statement.bindString(4, address);
         statement.bindBlob(5, image);
-        statement.bindDouble(6, (double)id);
+        statement.bindDouble(6, (double) id);
 
         statement.execute();
         database.close();
@@ -54,19 +54,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
 
-    public  void deleteData(int id) {
+    public void deleteData(int id) {
         SQLiteDatabase database = getWritableDatabase();
 
         String sql = "DELETE FROM TRAVEL WHERE id = ?";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
-        statement.bindDouble(1, (double)id);
+        statement.bindDouble(1, (double) id);
 
         statement.execute();
         database.close();
     }
 
-    public Cursor getData(String sql){
+    public Cursor getData(String sql) {
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql, null);
     }

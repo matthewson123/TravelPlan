@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                CharSequence[] items = {"Update", "Delete"};
+                CharSequence[] items = {getResources().getText(R.string.update), getResources().getText(R.string.delete)};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
 
-                dialog.setTitle("Choose an action");
+                dialog.setTitle(R.string.choose_an_action);
                 dialog.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                             // update
                             Cursor c = sqLiteHelper.getData("SELECT id FROM TRAVEL");
                             ArrayList<Integer> arrID = new ArrayList<Integer>();
-                            while (c.moveToNext()){
+                            while (c.moveToNext()) {
                                 arrID.add(c.getInt(0));
                             }
                             // show dialog update at here
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                             // delete
                             Cursor c = sqLiteHelper.getData("SELECT id FROM TRAVEL");
                             ArrayList<Integer> arrID = new ArrayList<Integer>();
-                            while (c.moveToNext()){
+                            while (c.moveToNext()) {
                                 arrID.add(c.getInt(0));
                             }
                             showDialogDelete(arrID.get(position));
@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ImageView travelImage;
-    private void showDialogUpdate(Activity activity, final int position){
+
+    private void showDialogUpdate(Activity activity, final int position) {
 
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.update_travel_plan_activity);
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             String address = cursor.getString(4);
             edtAddress.setText(address);
             byte[] image = cursor.getBlob(5);
-            travelImage.setImageBitmap(BitmapFactory.decodeByteArray(image,0,image.length));
+            travelImage.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
 
             list.add(new TravelPlan(place, day, time, address, image, id));
         }
@@ -190,9 +191,8 @@ public class MainActivity extends AppCompatActivity {
                             position
                     );
                     dialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Update successfully!!!",Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception error) {
+                    Toast.makeText(getApplicationContext(), "Update successfully!!!", Toast.LENGTH_SHORT).show();
+                } catch (Exception error) {
                     Log.e("Update error", error.getMessage());
                 }
                 updateTravelList();
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showDialogDelete(final int idTravel){
+    private void showDialogDelete(final int idTravel) {
         final AlertDialog.Builder dialogDelete = new AlertDialog.Builder(MainActivity.this);
 
         dialogDelete.setTitle("Warning!!");
@@ -210,8 +210,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 try {
                     sqLiteHelper.deleteData(idTravel);
-                    Toast.makeText(getApplicationContext(), "Delete successfully!!!",Toast.LENGTH_SHORT).show();
-                } catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Delete successfully!!!", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
                     Log.e("error", e.getMessage());
                 }
                 updateTravelList();
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         dialogDelete.show();
     }
 
-    private void updateTravelList(){
+    private void updateTravelList() {
         // get all data from sqlite
         Cursor cursor = sqLiteHelper.getData("SELECT * FROM TRAVEL");
         list.clear();
@@ -247,13 +247,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if(requestCode == 888){
-            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 888) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, 888);
-            }
-            else {
+            } else {
                 Toast.makeText(getApplicationContext(), "You don't have permission to access file location!", Toast.LENGTH_SHORT).show();
             }
             return;
@@ -264,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode == 888 && resultCode == RESULT_OK && data != null){
+        if (requestCode == 888 && resultCode == RESULT_OK && data != null) {
             Uri uri = data.getData();
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -292,10 +291,10 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.add_record) {
             Intent add_item = new Intent(this, AddTravelPlan.class);
             startActivity(add_item);
-        }else if (id == R.id.map){
+        } else if (id == R.id.map) {
             Intent map = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(map);
-        }else{
+        } else {
             Intent language = new Intent(this, ChangeLanguage.class);
             startActivity(language);
         }

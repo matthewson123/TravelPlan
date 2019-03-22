@@ -18,4 +18,6 @@
     <string name="click">Click</string>
     <string name="zh">Chinese</string>
     <string name="en">English</string>
+    <string name="choose_an_action">Choose an action</string>
+    <string name="delete">Delete</string>
 </resources>
