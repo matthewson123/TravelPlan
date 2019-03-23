@@ -13,6 +13,8 @@
     <string name="choose_image">Choose Image</string>
     <string name="add">Add</string>
     <string name="update">Update</string>
+    <string name="update_message_sucess">Update successfully!!</string>
+    <string name="update_message_fail">update error!!</string>
     <string name="title_activity_maps">Map</string>
     <string name="search_maps">Enter Address, City or Zip Code</string>
     <string name="click">Click</string>
@@ -20,4 +22,9 @@
     <string name="en">English</string>
     <string name="choose_an_action">Choose an action</string>
     <string name="delete">Delete</string>
+    <string name="warning">warning!!</string>
+    <string name="warning_message">Are you sure you want to this delete?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="map_message">Map is ready</string>
 </resources>

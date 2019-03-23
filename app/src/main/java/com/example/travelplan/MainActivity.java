@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                             position
                     );
                     dialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Update successfully!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.update_message_sucess, Toast.LENGTH_SHORT).show();
                 } catch (Exception error) {
                     Log.e("Update error", error.getMessage());
                 }
@@ -203,9 +203,9 @@ public class MainActivity extends AppCompatActivity {
     private void showDialogDelete(final int idTravel) {
         final AlertDialog.Builder dialogDelete = new AlertDialog.Builder(MainActivity.this);
 
-        dialogDelete.setTitle("Warning!!");
-        dialogDelete.setMessage("Are you sure you want to this delete?");
-        dialogDelete.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        dialogDelete.setTitle(R.string.warning);
+        dialogDelete.setMessage(R.string.warning_message);
+        dialogDelete.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        dialogDelete.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialogDelete.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

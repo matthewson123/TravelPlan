@@ -12,6 +12,8 @@
     <string name="choose_image">選擇相片</string>
     <string name="add">新增</string>
     <string name="update">更新</string>
+    <string name="update_message_sucess">更新成功!!!</string>
+    <string name="update_message_fail">更新失敗!!</string>
     <string name="title_activity_maps">地圖</string>
     <string name="search_maps">輸入地址,城市或郵政編碼</string>
     <string name="click">確定</string>
@@ -19,4 +21,9 @@
     <string name="en">英文</string>
     <string name="choose_an_action">選擇</string>
     <string name="delete">刪除</string>
+    <string name="warning">警告!!</string>
+    <string name="warning_message">是否刪除這個項目?</string>
+    <string name="ok">確定</string>
+    <string name="cancel">取消</string>
+    <string name="map_message">開始使用</string>
 </resources>
